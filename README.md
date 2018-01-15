@@ -15,13 +15,16 @@ from millify import millify
 millify(1234)
 # '1k'
 
+millify('1234') #same for strings
+# '1k'
+
 millify(12345678)
 # '12M'
 
 millify(12345678, precision=2)
 # '12.35M'
 
-millify(10000, precision=2)
+millify(10000, precision=2) # hide nulls in decimals by default
 # '10k'
 
 millify(10000, precision=2, drop_nulls=False)
@@ -41,7 +44,7 @@ from millify import prettify
 prettify(1234)
 # '1,234'
 
-prettify('1234')
+prettify('1234') #same for strings
 # '1,234'
 
 prettify(1234, '`')
