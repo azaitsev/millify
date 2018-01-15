@@ -15,7 +15,7 @@ from millify import millify
 millify(1234)
 # '1k'
 
-millify('1234') #same for strings
+millify('1234') # same for strings
 # '1k'
 
 millify(12345678)
@@ -44,7 +44,7 @@ from millify import prettify
 prettify(1234)
 # '1,234'
 
-prettify('1234') #same for strings
+prettify('1234') # same for strings
 # '1,234'
 
 prettify(1234, '`')
