@@ -17,6 +17,8 @@ def millify(n, precision=0, drop_nulls=True, prefixes=[]):
     while abs(n) >= 1000:
         millidx += 1
         n = round(n / 1000.0, precision)
+    if n < 1000:
+        round(n, precision) 
     result = '{}'.format(n)
     if drop_nulls:
         result = result.rstrip('0').rstrip('.')
