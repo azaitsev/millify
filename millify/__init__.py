@@ -9,7 +9,7 @@ __version__ = "0.1.1"
 def millify(n, precision=0, drop_nulls=True, prefixes=[]):
     """Humanize number."""
     millnames = ['', 'k', 'M', 'B', 'T', 'P', 'E', 'Z', 'Y']
-    if prefixes:
+    if prefixes and isinstance(prefixes, list):
         millnames = ['']
         millnames.extend(prefixes)
     n = float(n)
@@ -18,7 +18,7 @@ def millify(n, precision=0, drop_nulls=True, prefixes=[]):
         millidx += 1
         n = round(n / 1000.0, precision)
     if n < 1000:
-        n = round(n, precision) 
+        n = round(n, precision)
     result = '{}'.format(n)
     if drop_nulls:
         result = result.rstrip('0').rstrip('.')
@@ -27,6 +27,8 @@ def millify(n, precision=0, drop_nulls=True, prefixes=[]):
 
 def prettify(amount, separator=','):
     """Separate with predefined separator."""
+    if not isinstance(separator, str):
+        separator = ','
     orig = str(amount)
     new = re.sub("^(-?\d+)(\d{3})", "\g<1>{0}\g<2>".format(separator), str(amount))
     if orig == new:
