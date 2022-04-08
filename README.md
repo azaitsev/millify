@@ -34,7 +34,20 @@ prefixes = ['kB', 'MB', 'GB']
 millify(10000, prefixes=prefixes)
 # '10kB'
 ```
+### Convert from human readable number(millified) to number 
+```python
+from millify import unmillify
 
+unmillify("10k")
+# '10000'
+
+unmillify("5M")
+# '5000000'
+
+prefixes = ['kB', 'MB', 'GB']
+unmillify("5kB", prefixes=prefixes)
+# '5000'
+```
 
 ### Add a thousands separator
 

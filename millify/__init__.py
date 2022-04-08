@@ -13,13 +13,19 @@ def remove_exponent(d):
     return d.quantize(Decimal(1)) if d == d.to_integral() else d.normalize()
 
 
-def unmillify(number):
+def unmillify(number, prefixes=[]):
+    millnames = ['', 'k', 'M', 'B', 'T', 'P', 'E', 'Z', 'Y']
+    if prefixes:
+        millnames = ['']
+        millnames.extend(prefixes)
     search = re.search('(\d+\.)?(\d+)(\w)', number)
     groups = search.groups()
-    millvalues = {'':1e0,'k':1e3,'M':1e6,'B':1e9,'T':1e12,'P':1e15,'E':1e18,'Z':1e21,'Y':1e24}
+    millvalues = {}
+    print(millnames)
+    for i in range(len(millnames)):
+        millvalues[millnames[i]] = 1000**i
     groups = list(groups)
     if groups[0] == None: groups[0] = '0'
-
     try:
         millname = groups[-1]
         millvalue = millvalues[millname]
