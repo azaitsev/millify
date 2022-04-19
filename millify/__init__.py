@@ -35,4 +35,4 @@ def prettify(amount, separator=','):
     if orig == new:
         return new
     else:
-        return prettify(new)
+        return prettify(new, separator)
