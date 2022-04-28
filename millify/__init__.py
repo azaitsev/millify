@@ -13,6 +13,29 @@ def remove_exponent(d):
     return d.quantize(Decimal(1)) if d == d.to_integral() else d.normalize()
 
 
+def unmillify(number, prefixes=[]):
+    millnames = ['', 'k', 'M', 'B', 'T', 'P', 'E', 'Z', 'Y']
+    if prefixes:
+        millnames = ['']
+        millnames.extend(prefixes)
+    search = re.search('(\d+\.)?(\d+)(\w)', number)
+    groups = search.groups()
+    millvalues = {}
+    print(millnames)
+    for i in range(len(millnames)):
+        millvalues[millnames[i]] = 1000**i
+    groups = list(groups)
+    if groups[0] == None: groups[0] = '0'
+    try:
+        millname = groups[-1]
+        millvalue = millvalues[millname]
+        value = float(''.join(groups[:-1]))
+        number = int(value * millvalue)
+    except:
+        pass#millvalue = number
+    return number
+
+
 def millify(n, precision=0, drop_nulls=True, prefixes=[]):
     """Humanize number."""
     millnames = ['', 'k', 'M', 'B', 'T', 'P', 'E', 'Z', 'Y']
